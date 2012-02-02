@@ -18,7 +18,6 @@ BuildRequires:	firebird-devel
 BuildRequires:	perl-DBI >= 1.08
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-rpm-build-perl
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 DBD::InterBase is a Perl module which works with the DBI module to
@@ -29,24 +28,16 @@ provide access to Firebird and InterBase databases.
 %patch0 -p1
 
 %build
-%{__perl} Makefile.PL %{!?with_tests:</dev/null} \
-	INSTALLDIRS=vendor
-%{__make}
+perl Makefile.PL INSTALLDIRS=vendor
+%make
 
-#{__make} test}
+%check
+make test}
 
 %install
-
-rm -rf $RPM_BUILD_ROOT
-
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+%makeinstall_std
 
 %files
-%defattr(644,root,root,755)
 %doc Changes README
 %{perl_vendorarch}/DBD/InterBase.pm
 %dir %{perl_vendorarch}/DBD/InterBase
