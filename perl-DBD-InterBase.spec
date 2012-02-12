@@ -7,13 +7,14 @@
 %define		pnam	InterBase
 Summary:	DBD::InterBase - DBI driver for Firebird and InterBase RDBMS server
 Name:		perl-DBD-InterBase
-Version:	0.43
-Release:	2
+Version:	0.48
+Release:	1
 License:	GPLv2+
 Group:		Development/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	70d0142378ab928d9a75e465426d2437
 Patch0:		%{name}-libsonly.patch
+Patch1:		perl-DBD-InterBase-0.48-alt-dbdimp.patch
 BuildRequires:	firebird-devel
 BuildRequires:	perl-DBI >= 1.08
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -26,13 +27,14 @@ provide access to Firebird and InterBase databases.
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
 %patch0 -p1
+%patch1 -p1 -b .perl514~
 
 %build
-perl Makefile.PL INSTALLDIRS=vendor
+echo %{_includedir}| perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
-make test}
+make test
 
 %install
 %makeinstall_std
