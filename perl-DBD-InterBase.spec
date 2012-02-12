@@ -46,8 +46,5 @@ echo %{_includedir}| perl Makefile.PL INSTALLDIRS=vendor
 %{perl_vendorarch}/DBD/InterBase/*
 %dir %{perl_vendorarch}/auto/DBD/InterBase
 %{perl_vendorarch}/auto/DBD/InterBase/*
-%{perl_vendorarch}/Bundle/DBD/*
 #attr(755,root,root) %{perl_vendorarch}/auto/DBD/InterBase/InterBase.so
 %{_mandir}/man3/DBD*
-%{_mandir}/man3/Bundle*
-
