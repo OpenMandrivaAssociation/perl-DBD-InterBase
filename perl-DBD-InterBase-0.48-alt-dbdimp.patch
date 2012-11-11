@@ -1,0 +1,31 @@
+--- DBD-InterBase-0.48/dbdimp.c-	2008-01-08 09:02:45.000000000 +0300
++++ DBD-InterBase-0.48/dbdimp.c	2011-10-18 10:54:35.111789351 +0400
+@@ -113,7 +113,7 @@ void do_error(SV *h, int rc, char *what)
+ 
+     if (DBIc_TRACE_LEVEL(imp_xxh) >= 2)
+         PerlIO_printf(DBIc_LOGPIO(imp_xxh), "%s error %d recorded: %s\n", 
+-            what, rc, SvPV(errstr,na));
++            what, rc, SvPV_nolen(errstr));
+ }
+ 
+ #define CALC_AVAILABLE(buff) sizeof(buff) - strlen(buff) - 1
+@@ -693,7 +693,7 @@ SV *dbd_db_FETCH_attrib(SV *dbh, imp_dbh
+         return Nullsv;
+     else
+     {
+-        if ((result == &sv_yes) || (result == &sv_no))
++        if ((result == &PL_sv_yes) || (result == &PL_sv_no))
+             return result;
+         else
+             return sv_2mortal(result);
+@@ -1991,8 +1991,8 @@ int dbd_discon_all(SV *drh, imp_drh_t *i
+         DBIh_EVENT2(drh, ERROR_event, DBIc_ERR(imp_drh), DBIc_ERRSTR(imp_drh));
+         return FALSE;
+     }
+-    if (perl_destruct_level)
+-        perl_destruct_level = 0;
++    if (PL_perl_destruct_level)
++        PL_perl_destruct_level = 0;
+     return FALSE;
+ }
+ 
