@@ -48,3 +48,19 @@ echo %{_includedir}| perl Makefile.PL INSTALLDIRS=vendor
 %{perl_vendorarch}/auto/DBD/InterBase/*
 #attr(755,root,root) %{perl_vendorarch}/auto/DBD/InterBase/InterBase.so
 %{_mandir}/man3/DBD*
+
+
+%changelog
+* Sun Feb 12 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 0.48-1
++ Revision: 773403
+- disable checks for now...
+- new version
+- fix build with perl 5.14.2 (P1 from Alt Linux)
+- cleanups
+- fix license tag
+- svn commit -m mass rebuild of perl extension against perl 5.14.2
+
+* Fri Sep 02 2011 Александр Казанцев <kazancas@mandriva.org> 0.43-1
++ Revision: 697861
+- imported package perl-DBD-InterBase
+
