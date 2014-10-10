@@ -8,7 +8,7 @@
 Summary:	DBD::InterBase - DBI driver for Firebird and InterBase RDBMS server
 Name:		perl-DBD-InterBase
 Version:	0.48
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Development/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
