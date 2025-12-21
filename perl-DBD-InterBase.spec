@@ -15,6 +15,7 @@ Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version
 # Source0-md5:	70d0142378ab928d9a75e465426d2437
 Patch0:		%{name}-libsonly.patch
 Patch1:		perl-DBD-InterBase-0.48-alt-dbdimp.patch
+BuildRequires:	make
 BuildRequires:	firebird-devel
 BuildRequires:	perl-DBI >= 1.08
 BuildRequires:	perl-devel >= 1:5.8.0
